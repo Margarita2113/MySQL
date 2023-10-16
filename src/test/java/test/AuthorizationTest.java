@@ -14,10 +14,10 @@ import static data.SQLHelper.cleanDatabase;
 public class AuthorizationTest {
 
     //  @AfterAll
-   // static void shouldCleanDatabase() {
+    // static void shouldCleanDatabase() {
 
-   //     cleanDatabase();
-   // }
+    //     cleanDatabase();
+    // }
 
     @Test
     void shouldSuccessfulLogin() {
@@ -47,6 +47,7 @@ public class AuthorizationTest {
         verificationPage.validVerify(verificationCode.getCode());
         verificationPage.verifyErrorNotificationVisibility();
     }
+
     @Test
     void shouldAuthorizationWithInvalidCodeForThreeTimes() {
         var loginPage = open("http://localhost:9999", LoginPage.class);

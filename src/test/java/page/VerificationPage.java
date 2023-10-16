@@ -22,10 +22,10 @@ public class VerificationPage {
     public void verifyErrorNotificationVisibility() {
         errorNotification.shouldBe(visible).shouldHave(text("Ошибка! Неверно указан код! Попробуйте ещё раз."));
     }
+
     public void errorMessageTypeTwo() {
         errorMessageOverLimitedCode.shouldBe(visible).shouldHave(text("Ошибка! Превышено количество попыток ввода кода!"));
-        }
-
+    }
 
 
     public DashboardPage validVerify(String verificationCode) {
@@ -38,6 +38,7 @@ public class VerificationPage {
         codeField.setValue(verificationCode);
         verifyButton.click();
     }
+
     public void invalidCodeOverLimit(DataHelper.VerificationCode verificationCode) {
         codeField.setValue(verificationCode.getCode());
         verifyButton.click();

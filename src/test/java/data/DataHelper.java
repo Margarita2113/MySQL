@@ -2,6 +2,7 @@ package data;
 
 import com.github.javafaker.Faker;
 import lombok.Value;
+
 import java.util.Locale;
 
 
@@ -9,7 +10,8 @@ public class DataHelper {
 
     private DataHelper() {
     }
-    private static final Faker faker =new Faker(new Locale("en"));
+
+    private static final Faker faker = new Faker(new Locale("en"));
 
 
     public static AuthInfo getAuthInfoWithTestData() {
@@ -28,10 +30,15 @@ public class DataHelper {
         return new AuthInfo(generateRandomLogin(), generateRandomPassword());
     }
 
+    public static VerificationCode getInvalidCode() {
+        return new VerificationCode("1234");
+    }
+
 
     public static VerificationCode generateRandomVerificationCode() {
         return new VerificationCode(faker.numerify("######"));
     }
+
     @Value
     public static class AuthInfo {
         String login;
