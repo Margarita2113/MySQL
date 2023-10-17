@@ -13,28 +13,28 @@ import static data.SQLHelper.cleanDatabase;
 
 public class AuthorizationTest {
 
-    //  @AfterAll
-    // static void shouldCleanDatabase() {
+      @AfterAll
+     static void shouldCleanDatabase() {
 
-    //     cleanDatabase();
-    // }
+        cleanDatabase();
+     }
 
     @Test
     void shouldSuccessfulLogin() {
         var loginPage = open("http://localhost:9999", LoginPage.class);
         var authInfo = DataHelper.getAuthInfoWithTestData();
         var verificationPage = loginPage.validLogin(authInfo);
-        verificationPage.verificationPageVisibility();
+        verificationPage.verifyVerificationPageVisibility();
         var verificationCode = SQLHelper.getVerificationCode();
         verificationPage.validVerify(verificationCode.getCode());
     }
 
     @Test
     void shouldGetErrorNotificationWithRandomUser() {
-        var LoginPage = open("http://localhost:9999", LoginPage.class);
+        var loginPage = open("http://localhost:9999", LoginPage.class);
         var authInfo = DataHelper.generateRandomUser();
-        LoginPage.validLogin(authInfo);
-        LoginPage.verifyErrorNotificationVisibility();
+        loginPage.validLogin(authInfo);
+        loginPage.verifyErrorNotificationVisibility();
     }
 
     @Test
@@ -42,9 +42,9 @@ public class AuthorizationTest {
         var loginPage = open("http://localhost:9999", LoginPage.class);
         var authInfo = DataHelper.getAuthInfoWithTestData();
         var verificationPage = loginPage.validLogin(authInfo);
-        verificationPage.verificationPageVisibility();
-        var verificationCode = SQLHelper.getVerificationCode();
-        verificationPage.validVerify(verificationCode.getCode());
+        verificationPage.verifyVerificationPageVisibility();
+        var verificationCode = DataHelper.generateRandomVerificationCode();
+        verificationPage.verify(verificationCode.getCode());
         verificationPage.verifyErrorNotificationVisibility();
     }
 
